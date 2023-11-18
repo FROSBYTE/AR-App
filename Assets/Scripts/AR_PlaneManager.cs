@@ -5,9 +5,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-public class ARPlaneManager : MonoBehaviour
+public class AR_PlaneManager : MonoBehaviour
 {
-    public static ARPlaneManager Instance;
+    public static AR_PlaneManager Instance;
 
     [Header("AR Foundation")]
     [SerializeField] GameObject placementIndicator;
@@ -17,6 +17,10 @@ public class ARPlaneManager : MonoBehaviour
     [SerializeField] GameObject objectToSpawn;
     [SerializeField] GameObject instructionText;
 
+    [Header("UI References")]
+    [SerializeField] GameObject grounddetectiom_Button;
+    [SerializeField] GameObject walldetection_Button;
+
     private float lastTapTime;
     public float doubleTapTimeThreshold = 0.5f;
 
@@ -25,6 +29,11 @@ public class ARPlaneManager : MonoBehaviour
 
     public static bool placementPoseIsValid;
     public static bool isDetected = true;
+
+    private void Start()
+    {
+        _arPlaneManager.detectionMode = PlaneDetectionMode.Horizontal;
+    }
 
     private void Awake()
     {
