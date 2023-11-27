@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -30,14 +31,17 @@ public class AR_PlaneManager : MonoBehaviour
     public static bool placementPoseIsValid;
     public static bool isDetected = true;
 
-    private void Start()
-    {
-        _arPlaneManager.detectionMode = PlaneDetectionMode.Horizontal;
-    }
-
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        grounddetectiom_Button.GetComponent<Image>().color = Color.green;
+        walldetection_Button.GetComponent<Image>().color = Color.white;
+
+        _arPlaneManager.detectionMode = PlaneDetectionMode.Horizontal;
     }
 
     void Update()
@@ -52,13 +56,30 @@ public class AR_PlaneManager : MonoBehaviour
 
     private void DoubleTap()
     {
-        // Check for touch input
-        if (Input.touchCount > 0)
+        if(placementPoseIsValid)
         {
-            Touch touch = Input.GetTouch(0);
+            // Check for touch input
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
 
-            // Check if it's a tap
-            if (touch.phase == TouchPhase.Began)
+                // Check if it's a tap
+                if (touch.phase == TouchPhase.Began)
+                {
+                    // Check for double tap
+                    if (Time.time - lastTapTime < doubleTapTimeThreshold)
+                    {
+                        PlaceObject();
+                        // Double tap detected
+                        Debug.Log("Double Tap!");
+                    }
+
+                    // Update last tap time
+                    lastTapTime = Time.time;
+                }
+            }
+            // Check for mouse input
+            else if (Input.GetMouseButtonDown(0))
             {
                 // Check for double tap
                 if (Time.time - lastTapTime < doubleTapTimeThreshold)
@@ -71,20 +92,6 @@ public class AR_PlaneManager : MonoBehaviour
                 // Update last tap time
                 lastTapTime = Time.time;
             }
-        }
-        // Check for mouse input
-        else if (Input.GetMouseButtonDown(0))
-        {
-            // Check for double tap
-            if (Time.time - lastTapTime < doubleTapTimeThreshold)
-            {
-                PlaceObject();
-                // Double tap detected
-                Debug.Log("Double Tap!");
-            }
-
-            // Update last tap time
-            lastTapTime = Time.time;
         }
     }
 
@@ -102,7 +109,6 @@ public class AR_PlaneManager : MonoBehaviour
             instructionText.SetActive(false);
         }
     }
-
 
     void UpdatePlacementPose()
     {
@@ -140,6 +146,28 @@ public class AR_PlaneManager : MonoBehaviour
 
         // Update last tap time
         lastTapTime = Time.time;
+    }
+
+    public void GroundDetection_Button()
+    {
+        grounddetectiom_Button.GetComponent<Image>().color = Color.green;
+        walldetection_Button.GetComponent<Image>().color = Color.white;
+
+        Destroy(spawnedObject);
+        spawnedObject = null;
+
+        _arPlaneManager.detectionMode = PlaneDetectionMode.Horizontal;
+    }
+
+    public void WallDetection_Button()
+    {
+        grounddetectiom_Button.GetComponent<Image>().color = Color.white;
+        walldetection_Button.GetComponent<Image>().color = Color.green;
+
+        Destroy(spawnedObject);
+        spawnedObject = null;
+
+        _arPlaneManager.detectionMode = PlaneDetectionMode.Vertical;
     }
 }
 
