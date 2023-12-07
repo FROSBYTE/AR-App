@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class VuforiaManager : MonoBehaviour
+public class VuforiaImageTargetManager : MonoBehaviour
 {
     //[SerializeField] GameObject textView;
     public void onTargetFound(VideoPlayer player)
