@@ -17,4 +17,8 @@ public class VuforiaImageTargetManager : MonoBehaviour
         player.Stop();
         //textView.SetActive(true);
     }
+    public void OpenBrowserButtonClicked(string urlToOpen)
+    {
+        Application.OpenURL(urlToOpen);
+    }
 }
