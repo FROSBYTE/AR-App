@@ -5,19 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: e10db888a2c347749ad064b49929a294
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Plane Detection.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Face Detection.unity
     guid: 1a1f1467b11ba9a489e2f9f49bcb841f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Vuforia Image Targeting.unity
     guid: 1849ac88166cef84eb56e09fcf7dc14d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Vuforia Plane Detection.unity
     guid: 23d41714a47358046a6fddf3064701ff
   - enabled: 1
