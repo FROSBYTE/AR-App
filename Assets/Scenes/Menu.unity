@@ -2402,6 +2402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1685860605}
   - component: {fileID: 1685860606}
+  - component: {fileID: 1685860607}
   m_Layer: 0
   m_Name: 'UIManager - Scene : Menu'
   m_TagString: Untagged
@@ -2440,6 +2441,18 @@ MonoBehaviour:
   mainPanel: {fileID: 1822091322}
   selectionPanel: {fileID: 1828584550}
   _animator: {fileID: 1052126577}
+--- !u!114 &1685860607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685860604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188fd7b2e202fcd46bd28a23c3df263e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1721372854
 GameObject:
   m_ObjectHideFlags: 0
